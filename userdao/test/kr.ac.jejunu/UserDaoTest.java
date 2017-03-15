@@ -18,9 +18,9 @@ public class UserDaoTest {
     public void get() throws SQLException, ClassNotFoundException {
         // id 를 주면 이름과 비밀번호를 가져온다.
 
-        Long id = 10l;
-        String name  = "이익전";
-        String password = "1234";
+        Long id = 1l;
+        String name  = "김재현";
+        String password = "12334";
 
         UserDao userDao = new UserDao();
 
@@ -34,7 +34,7 @@ public class UserDaoTest {
 
     @Test
     public void add() throws SQLException, ClassNotFoundException {
-        String name =  "김재현";
+        String name =  "뚱이";
         String password = "1234";
 
         User user = new User();
