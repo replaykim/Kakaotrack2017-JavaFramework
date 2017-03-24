@@ -16,10 +16,16 @@ import java.sql.*;
 
 public class UserDao {
 
+    private ConnectionMaker connectionMaker;
+
+    public UserDao(ConnectionMaker connectionMaker) {
+        this.connectionMaker = connectionMaker;
+    }
+
     public User get(Long id) throws ClassNotFoundException, SQLException {
         //User 어디에있어? Mysql
         //Class 를 로딩해야되겠네.
-        Connection connection = getConnection();
+        Connection connection = connectionMaker.getConnection();
         //쿼리를만들어야겠네
         PreparedStatement preparedStatement = connection.prepareStatement("select * from userinfo where id = ?");
         preparedStatement.setLong(1, id);
@@ -43,7 +49,7 @@ public class UserDao {
     }
 
     public Long add(User user) throws SQLException, ClassNotFoundException {
-        Connection connection = getConnection();
+        Connection connection = connectionMaker.getConnection();
 
         PreparedStatement preparedStatement = connection.prepareStatement("insert into userinfo(name, password) VALUES (?,?)");
         preparedStatement.setString(1, user.getName());
@@ -63,8 +69,8 @@ public class UserDao {
         return id;
     }
 
-    private Connection getConnection() throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
-        return DriverManager.getConnection("jdbc:mysql://117.17.102.106:3306/replayDB?characterEncoding=utf-8", "root", "1234");
-    }
+//    public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
+//        Class.forName("com.mysql.jdbc.Driver");
+//        return DriverManager.getConnection("jdbc:mysql://117.17.102.106:3306/replayDB?characterEncoding=utf-8", "root", "1234");
+
 }
