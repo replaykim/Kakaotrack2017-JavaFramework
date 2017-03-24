@@ -2,6 +2,9 @@ package kr.ac.jejunu;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 
 import java.sql.SQLException;
 
@@ -15,11 +18,16 @@ import static org.hamcrest.CoreMatchers.*;
  */
 public class UserDaoTest {
 
-    private DaoFactory daoFactory;
+    UserDao userDao;
 
     @Before         //before 은 테스트가 실행되기전 실행
     public void setup(){
-        daoFactory = new DaoFactory();
+        //xml 파일 beans
+        GenericXmlApplicationContext context = new GenericXmlApplicationContext(new String[]{"daoFactory.xml"});
+        this.userDao =  context.getBean("userDao",UserDao.class);
+        //factory beans
+//        ApplicationContext context = new AnnotationConfigApplicationContext(DaoFactory.class);
+//        userDao = context.getBean("userDao",UserDao.class);
     }
 
     @Test
@@ -28,9 +36,6 @@ public class UserDaoTest {
         Long id = 1l;
         String name  = "김재현";
         String password = "12334";
-
-        UserDao userDao = daoFactory.getUserDao();
-
         User user = userDao.get(id);
 
         assertThat(id, is(user.getId()));
@@ -48,9 +53,6 @@ public class UserDaoTest {
 
         user.setName(name);
         user.setPassword(password);
-
-        UserDao userDao = daoFactory.getUserDao();
-
         Long id = userDao.add(user);
 
         User resultUser = userDao.get(id);
@@ -61,42 +63,42 @@ public class UserDaoTest {
 
     }
 
-    @Test
-    public void hallaget() throws SQLException, ClassNotFoundException {
-        // id 를 주면 이름과 비밀번호를 가져온다.
-
-        Long id = 1l;
-        String name  = "김재현";
-        String password = "12334";
-
-        UserDao userDao = new UserDao(new HallaConnectionMaker());
-
-        User user = userDao.get(id);
-
-        assertThat(id, is(user.getId()));
-        assertThat(name, is(user.getName()));
-        assertThat(password, is(user.getPassword()));
-
-    }
-
-    @Test
-    public void hallaadd() throws SQLException, ClassNotFoundException {
-        String name =  "뚱이";
-        String password = "1234";
-
-        User user = new User();
-
-        user.setName(name);
-        user.setPassword(password);
-
-        UserDao userDao = new UserDao(new HallaConnectionMaker());
-        Long id = userDao.add(user);
-
-        User resultUser = userDao.get(id);
-
-        assertThat(id, is(resultUser.getId()));
-        assertThat(name, is(resultUser.getName()));
-        assertThat(password, is(resultUser.getPassword()));
-
-    }
+//    @Test
+//    public void hallaget() throws SQLException, ClassNotFoundException {
+//        // id 를 주면 이름과 비밀번호를 가져온다.
+//
+//        Long id = 1l;
+//        String name  = "김재현";
+//        String password = "12334";
+//
+//        UserDao userDao = new UserDao(new HallaConnectionMaker());
+//
+//        User user = userDao.get(id);
+//
+//        assertThat(id, is(user.getId()));
+//        assertThat(name, is(user.getName()));
+//        assertThat(password, is(user.getPassword()));
+//
+//    }
+//
+//    @Test
+//    public void hallaadd() throws SQLException, ClassNotFoundException {
+//        String name =  "뚱이";
+//        String password = "1234";
+//
+//        User user = new User();
+//
+//        user.setName(name);
+//        user.setPassword(password);
+//
+//        UserDao userDao = new UserDao(new HallaConnectionMaker());
+//        Long id = userDao.add(user);
+//
+//        User resultUser = userDao.get(id);
+//
+//        assertThat(id, is(resultUser.getId()));
+//        assertThat(name, is(resultUser.getName()));
+//        assertThat(password, is(resultUser.getPassword()));
+//
+//    }
 }
