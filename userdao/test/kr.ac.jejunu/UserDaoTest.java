@@ -1,5 +1,6 @@
 package kr.ac.jejunu;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.sql.SQLException;
@@ -14,15 +15,21 @@ import static org.hamcrest.CoreMatchers.*;
  */
 public class UserDaoTest {
 
+    private DaoFactory daoFactory;
+
+    @Before         //before 은 테스트가 실행되기전 실행
+    public void setup(){
+        daoFactory = new DaoFactory();
+    }
+
     @Test
     public void jejunuget() throws SQLException, ClassNotFoundException {
-        // id 를 주면 이름과 비밀번호를 가져온다.
 
         Long id = 1l;
         String name  = "김재현";
         String password = "12334";
 
-        UserDao userDao = new UserDao(new JejuConnectionMaker());
+        UserDao userDao = daoFactory.getUserDao();
 
         User user = userDao.get(id);
 
@@ -42,7 +49,8 @@ public class UserDaoTest {
         user.setName(name);
         user.setPassword(password);
 
-        UserDao userDao = new UserDao(new JejuConnectionMaker());
+        UserDao userDao = daoFactory.getUserDao();
+
         Long id = userDao.add(user);
 
         User resultUser = userDao.get(id);
