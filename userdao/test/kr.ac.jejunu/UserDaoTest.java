@@ -63,6 +63,49 @@ public class UserDaoTest {
 
     }
 
+    @Test
+    public void update() throws SQLException, ClassNotFoundException {
+        String name = "김재현";
+        String password = "1234";
+
+        User user = new User();
+        user.setName(name);
+        user.setPassword(password);
+        Long id = userDao.add(user);
+
+        String changedName = "뚱이";
+        String changedPassword = "1111";
+
+        user.setId(id);
+        user.setName(changedName);
+        user.setPassword(changedPassword);
+
+        userDao.update(user);
+
+        User chagedUser = userDao.get(id);
+
+        assertThat(id,is(chagedUser.getId()));
+        assertThat(changedName,is(chagedUser.getName()));
+        assertThat(changedPassword,is(chagedUser.getPassword()));
+    }
+
+    @Test
+    public void delete() throws SQLException, ClassNotFoundException {
+        String name = "김재현";
+        String password = "1234";
+
+        User user = new User();
+        user.setName(name);
+        user.setPassword(password);
+        Long id = userDao.add(user);
+
+        userDao.delete(id);
+
+        User deletedUser = userDao.get(id);
+
+        assertThat(deletedUser,nullValue());
+    }
+
 //    @Test
 //    public void hallaget() throws SQLException, ClassNotFoundException {
 //        // id 를 주면 이름과 비밀번호를 가져온다.
