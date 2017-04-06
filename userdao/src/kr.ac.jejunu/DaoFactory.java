@@ -20,6 +20,11 @@ public class DaoFactory {
 
     @Bean
     public ConnectionMaker connectionMaker() {
-        return new JejuConnectionMaker();
+        JejuConnectionMaker connectionMaker = new JejuConnectionMaker();
+        connectionMaker.setPassword("1234");
+        connectionMaker.setClassName("com.mysql.jdbc.Driver");
+        connectionMaker.setUrl("jdbc:mysql://117.17.102.106:3306/replayDB?characterEncoding=utf-8");
+        connectionMaker.setId("root");
+        return connectionMaker;
     }
 }
