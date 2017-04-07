@@ -138,4 +138,42 @@ public class JdbcContext {
                 }
         }
     }
+    public User queryForObject(String SQL, Object[] params) throws SQLException {
+        //(Connection connection 으로 명확히 해줄수 있고, 안해줘도 실행하는 부분에서 알아서 확인함.)
+
+        StatementStrategy statementStrategy = connection -> {
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+
+            for (int i=1; i<=params.length; i++){
+                preparedStatement.setObject(i,params[i-1]);
+            }
+            return preparedStatement;
+
+        };
+        return jdbcContextWithStatementStrategyForGet(statementStrategy);
+    }
+
+    public Long insert(String sql, Object[] params) throws SQLException {
+        StatementStrategy statementStrategy = connection -> {
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            for (int i = 1; i <= params.length; i++){
+                preparedStatement.setObject(i, params[i-1]);
+            }
+            return preparedStatement;
+        };
+        return jdbcContextWithStatementStrategyForInsert(statementStrategy);
+    }
+
+    public void update(String sql, Object[] params) throws SQLException {
+        StatementStrategy statementStrategy = connection -> {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            for (int i =1 ; i <= params.length; i++){
+                preparedStatement.setObject(i, params[i-1]);
+            }
+            return preparedStatement;
+        };
+
+        jdbcContextWithStatementStrategyForUpdate(statementStrategy);
+    }
 }
