@@ -17,171 +17,36 @@ import java.sql.*;
 
 public class UserDao {
 
-    public void setDatasouce(DataSource datasouce) {
-        this.datasouce = datasouce;
-    }
-
-    private DataSource datasouce;
+    private JdbcContext jdbcContext;
 
     public User get(Long id) throws ClassNotFoundException, SQLException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        User user = null;
+        StatementStrategy statementStrategy = new GetUserStatementStrategy(id);
 
-        try {
-            connection = datasouce.getConnection();
-            StatementStrategy statementStrategy = new GetUserStatementStrategy(id);
-            preparedStatement = statementStrategy.makeStatement(connection);
-
-            resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()){
-                user = new User();
-                user.setId(resultSet.getLong("id"));
-                user.setName(resultSet.getString("name"));
-                user.setPassword(resultSet.getString("password"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw e;
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (preparedStatement != null){
-                try {
-                    preparedStatement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (connection != null){
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        }
-
-        return user;
+        return jdbcContext.jdbcContextWithStatementStrategyForGet(statementStrategy);
     }
 
     public Long add(User user) throws ClassNotFoundException, SQLException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        Long id = null;
+        StatementStrategy statementStrategy = new AddUserStatement(user);
 
-        try {
-            connection = datasouce.getConnection();
-            StatementStrategy statementStrategy = new AddUserStatement(user);
-            preparedStatement = statementStrategy.makeStatement(connection);
-//            preparedStatement = connection.prepareStatement("insert into userinfo(name, password) VALUES (?,?)");
-//            preparedStatement.setString(1, user.getName());
-//            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.executeUpdate();
-
-            preparedStatement = connection.prepareStatement("select last_insert_id()");
-            resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-
-            id = resultSet.getLong(1);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw e;
-        } finally {
-            if (resultSet != null){
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (preparedStatement != null){
-
-                try {
-                    preparedStatement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (connection != null){
-
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return id;
+        return jdbcContext.jdbcContextWithStatementStrategyForInsert(statementStrategy);
     }
 
     public void update(User user) throws ClassNotFoundException, SQLException {
+        StatementStrategy statementStrategy = new UpdateUserStatement(user);
 
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        try {
-            connection = datasouce.getConnection();
-            StatementStrategy statementStrategy = new UpdateUserStatement(user);
-            preparedStatement = statementStrategy.makeStatement(connection);
-
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw e;
-        } finally {
-            if (preparedStatement != null)
-                try {
-                    preparedStatement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            if (connection != null)
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-        }
+        jdbcContext.jdbcContextWithStatementStrategyForUpdate(statementStrategy);
     }
 
     public void delete(Long id) throws ClassNotFoundException, SQLException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        try {
-            connection = datasouce.getConnection();
-            StatementStrategy statementStrategy = new DeleteUserStatement(id);
-            preparedStatement = statementStrategy.makeStatement(connection);
-//            preparedStatement = connection.prepareStatement("DELETE FROM userinfo WHERE id = ?");
-//            preparedStatement.setLong(1,id);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw e;
-        } finally {
-            if (preparedStatement != null)
-                try {
-                    preparedStatement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            if (connection != null)
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-        }
+        StatementStrategy statementStrategy = new DeleteUserStatement(id);
+
+        jdbcContext.jdbcContextWithStatementStrategyForUpdate(statementStrategy);
     }
+
+    public void setJdbcContext(JdbcContext jdbcContext) {
+        this.jdbcContext = jdbcContext;
+    }
+
 
 //    public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
 //        Class.forName("com.mysql.jdbc.Driver");
