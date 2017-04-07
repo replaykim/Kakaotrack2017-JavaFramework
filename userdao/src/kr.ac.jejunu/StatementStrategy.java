@@ -5,8 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * Created by blue on 2017-04-06.
+ * Created by replay on 2017. 4. 7..
  */
 public interface StatementStrategy {
     PreparedStatement makeStatement(Connection connection) throws SQLException;
+
 }
