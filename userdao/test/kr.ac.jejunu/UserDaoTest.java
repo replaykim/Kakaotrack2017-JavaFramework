@@ -23,11 +23,11 @@ public class UserDaoTest {
     @Before         //before 은 테스트가 실행되기전 실행
     public void setup(){
         //xml 파일 beans
-//        GenericXmlApplicationContext context = new GenericXmlApplicationContext(new String[]{"daoFactory.xml"});
-//        this.userDao =  context.getBean("userDao",UserDao.class);
+        GenericXmlApplicationContext context = new GenericXmlApplicationContext(new String[]{"daoFactory.xml"});
+        this.userDao =  context.getBean("userDao",UserDao.class);
         //factory beans
-        ApplicationContext context = new AnnotationConfigApplicationContext(DaoFactory.class);
-        userDao = context.getBean("userDao",UserDao.class);
+//        ApplicationContext context = new AnnotationConfigApplicationContext(DaoFactory.class);
+//        userDao = context.getBean("userDao",UserDao.class);
     }
 
     @Test
