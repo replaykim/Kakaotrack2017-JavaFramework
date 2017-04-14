@@ -32,8 +32,11 @@ public class UserDao {
         User user = null;
         try {
             connection = dataSource.getConnection();
-            preparedStatement = connection.prepareStatement("select * from userinfo where id = ?");
-            preparedStatement.setLong(1, id);
+//            String sql = "select * from userinfo where id = ?";
+//            preparedStatement = connection.prepareStatement(sql);
+//            preparedStatement.setLong(1, id);
+            StatementStrategy statementStrategy = new GetUserStatementStrategy();
+            preparedStatement = statementStrategy.makeStatement(id,connection);
             resultSet = preparedStatement.executeQuery();
 
             if ( resultSet.next()){
@@ -79,10 +82,12 @@ public class UserDao {
 
         try {
             connection = dataSource.getConnection();
-
-            preparedStatement = connection.prepareStatement("insert into userinfo(name, password) VALUES (?,?)");
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getPassword());
+//        String sql = "insert into userinfo(name, password) VALUES (?,?)";
+//            preparedStatement = connection.prepareStatement(sql);
+//            preparedStatement.setString(1, user.getName());
+//            preparedStatement.setString(2, user.getPassword());
+            StatementStrategy statementStrategy = new AddUserStatementStrategy();
+            preparedStatement = statementStrategy.makeStatement(user, connection);
             preparedStatement.executeUpdate();
 
             preparedStatement = connection.prepareStatement("select last_insert_id()");
@@ -127,9 +132,10 @@ public class UserDao {
 
         try {
             connection = dataSource.getConnection();
-
-            preparedStatement = connection.prepareStatement("DELETE FROM userinfo WHERE id=?");
-            preparedStatement.setLong(1, id);
+//            preparedStatement = connection.prepareStatement(sql);
+//            preparedStatement.setLong(1, id);
+            StatementStrategy statementStrategy = new DeleteUserStatementStrategy();
+            preparedStatement= statementStrategy.makeStatement(id, connection);
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
