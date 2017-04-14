@@ -2,6 +2,8 @@ package kr.ac.jejunu;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.sql.SQLException;
 
@@ -14,10 +16,13 @@ import static org.hamcrest.CoreMatchers.*;
  * test 는 다돌리는 습관!
  */
 public class UserDaoTest {
-    DaoFactory daoFactory;
+
+    UserDao userDao;
+
     @Before
     public void setup(){
-        daoFactory = new DaoFactory();
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(DaoFactory.class);
+        userDao = applicationContext.getBean("userDao", UserDao.class);
     }
 
     @Test
@@ -28,7 +33,6 @@ public class UserDaoTest {
         String name  = "김재현";
         String password = "12334";
 
-        UserDao userDao = daoFactory.getJejuDao();
 
         User user = userDao.get(id);
 
@@ -48,7 +52,6 @@ public class UserDaoTest {
         user.setName(name);
         user.setPassword(password);
 
-        UserDao userDao = daoFactory.getJejuDao();
         Long id = userDao.add(user);
 
         User resultUser = userDao.get(id);
