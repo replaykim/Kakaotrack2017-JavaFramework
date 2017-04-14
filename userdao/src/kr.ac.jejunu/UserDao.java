@@ -1,5 +1,6 @@
 package kr.ac.jejunu;
 
+import javax.sql.DataSource;
 import java.sql.*;
 
 /**
@@ -15,16 +16,18 @@ import java.sql.*;
  */
 
 public class UserDao {
-    ConnectionMaker connectionMaker;
 
-    public UserDao(ConnectionMaker connectionMaker) {
-        this.connectionMaker = connectionMaker;
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
+
+    DataSource dataSource;
 
     public User get(Long id) throws ClassNotFoundException, SQLException {
         //User 어디에있어? Mysql
         //Class 를 로딩해야되겠네.
-        Connection connection = connectionMaker.getConnection();
+        Connection connection = dataSource.getConnection();
         //쿼리를만들어야겠네
         PreparedStatement preparedStatement = connection.prepareStatement("select * from userinfo where id = ?");
         preparedStatement.setLong(1, id);
@@ -48,7 +51,7 @@ public class UserDao {
     }
 
     public Long add(User user) throws SQLException, ClassNotFoundException {
-        Connection connection = connectionMaker.getConnection();
+        Connection connection = dataSource.getConnection();
 
         PreparedStatement preparedStatement = connection.prepareStatement("insert into userinfo(name, password) VALUES (?,?)");
         preparedStatement.setString(1, user.getName());
