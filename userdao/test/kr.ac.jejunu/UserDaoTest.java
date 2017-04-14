@@ -1,5 +1,6 @@
 package kr.ac.jejunu;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.sql.SQLException;
@@ -22,7 +23,7 @@ public class UserDaoTest {
         String name  = "김재현";
         String password = "12334";
 
-        UserDao userDao = new JejuUserDao();
+        UserDao userDao = new UserDao(new JejuConnectionMaker());
 
         User user = userDao.get(id);
 
@@ -42,7 +43,7 @@ public class UserDaoTest {
         user.setName(name);
         user.setPassword(password);
 
-        UserDao userDao = new JejuUserDao();
+        UserDao userDao = new UserDao(new JejuConnectionMaker());
         Long id = userDao.add(user);
 
         User resultUser = userDao.get(id);
@@ -61,7 +62,7 @@ public class UserDaoTest {
         String name  = "김재현";
         String password = "12334";
 
-        UserDao userDao = new HallaUserDao();
+        UserDao userDao = new UserDao(new HallaConnectionMaker());
 
         User user = userDao.get(id);
 
@@ -81,7 +82,7 @@ public class UserDaoTest {
         user.setName(name);
         user.setPassword(password);
 
-        UserDao userDao = new HallaUserDao();
+        UserDao userDao = new UserDao(new HallaConnectionMaker());
         Long id = userDao.add(user);
 
         User resultUser = userDao.get(id);
