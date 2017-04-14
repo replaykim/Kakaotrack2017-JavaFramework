@@ -25,8 +25,8 @@
       <file leaf-file-name="UserDaoTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/kr.ac.jejunu/UserDaoTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="1050">
+              <caret line="79" column="19" lean-forward="true" selection-start-line="79" selection-start-column="19" selection-end-line="79" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -45,14 +45,16 @@
       <file leaf-file-name="UserDao.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/kr.ac.jejunu/UserDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="20" column="54" lean-forward="false" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
+            <state relative-caret-position="309">
+              <caret line="130" column="88" lean-forward="false" selection-start-line="130" selection-start-column="88" selection-end-line="130" selection-end-column="88" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#411#412#0" expanded="true" />
-                <marker date="1492159697000" expanded="true" signature="727:762" ph="select * fro... userinfo" />
-                <marker date="1492159697000" expanded="true" signature="1534:1583" ph="insert into userinfo... " />
-                <marker date="1492159697000" expanded="true" signature="1804:1827" ph="select last_... " />
+                <element signature="e#410#411#0" expanded="true" />
+                <element signature="e#454#455#0" expanded="true" />
+                <marker date="1492161855000" expanded="true" signature="814:849" ph="select * fro... userinfo" />
+                <marker date="1492161855000" expanded="true" signature="2366:2415" ph="insert into userinfo... " />
+                <marker date="1492161855000" expanded="true" signature="2652:2675" ph="select last_... " />
+                <marker date="1492161855000" expanded="true" signature="3883:3914" ph="DELETE FROM " />
               </folding>
             </state>
           </provider>
@@ -111,9 +113,9 @@
         <option value="$PROJECT_DIR$/src/kr.ac.jejunu/HallaConnectionMaker.java" />
         <option value="$PROJECT_DIR$/src/kr.ac.jejunu/DaoFactory.java" />
         <option value="$PROJECT_DIR$/src/kr.ac.jejunu/JejuConnectionMaker.java" />
+        <option value="$PROJECT_DIR$/src/DaoFactory.xml" />
         <option value="$PROJECT_DIR$/test/kr.ac.jejunu/UserDaoTest.java" />
         <option value="$PROJECT_DIR$/src/kr.ac.jejunu/UserDao.java" />
-        <option value="$PROJECT_DIR$/src/DaoFactory.xml" />
       </list>
     </option>
   </component>
@@ -838,12 +840,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="UserDaoTest - 2017.04.14 at 17h 19m 36s.xml">
-      <configuration name="UserDaoTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="UserDaoTest - 2017.04.14 at 17h 23m 10s.xml">
-      <configuration name="UserDaoTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="UserDaoTest - 2017.04.14 at 17h 23m 31s.xml">
       <configuration name="UserDaoTest" configurationId="JUnit" />
     </history-entry>
@@ -868,9 +864,15 @@
     <history-entry file="UserDaoTest - 2017.04.14 at 17h 49m 24s.xml">
       <configuration name="UserDaoTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="UserDaoTest - 2017.04.14 at 17h 49m 46s.xml">
+      <configuration name="UserDaoTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="UserDaoTest - 2017.04.14 at 18h 24m 20s.xml">
+      <configuration name="UserDaoTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10604000" />
+    <option name="totallyTimeSpent" value="12344000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -1021,10 +1023,12 @@
           <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#411#412#0" expanded="true" />
-            <marker date="1492159697000" expanded="true" signature="727:762" ph="select * fro... userinfo" />
-            <marker date="1492159697000" expanded="true" signature="1534:1583" ph="insert into userinfo... " />
-            <marker date="1492159697000" expanded="true" signature="1804:1827" ph="select last_... " />
+            <element signature="e#410#411#0" expanded="true" />
+            <element signature="e#454#455#0" expanded="true" />
+            <marker date="1492161855000" expanded="true" signature="814:849" ph="select * fro... userinfo" />
+            <marker date="1492161855000" expanded="true" signature="2366:2415" ph="insert into userinfo... " />
+            <marker date="1492161855000" expanded="true" signature="2652:2675" ph="select last_... " />
+            <marker date="1492161855000" expanded="true" signature="3883:3914" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>
@@ -1054,10 +1058,12 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#411#412#0" expanded="true" />
-            <marker date="1492159697000" expanded="true" signature="727:762" ph="select * fro... userinfo" />
-            <marker date="1492159697000" expanded="true" signature="1534:1583" ph="insert into userinfo... " />
-            <marker date="1492159697000" expanded="true" signature="1804:1827" ph="select last_... " />
+            <element signature="e#410#411#0" expanded="true" />
+            <element signature="e#454#455#0" expanded="true" />
+            <marker date="1492161855000" expanded="true" signature="814:849" ph="select * fro... userinfo" />
+            <marker date="1492161855000" expanded="true" signature="2366:2415" ph="insert into userinfo... " />
+            <marker date="1492161855000" expanded="true" signature="2652:2675" ph="select last_... " />
+            <marker date="1492161855000" expanded="true" signature="3883:3914" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>
@@ -1085,10 +1091,12 @@
           <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#411#412#0" expanded="true" />
-            <marker date="1492159697000" expanded="true" signature="727:762" ph="select * fro... userinfo" />
-            <marker date="1492159697000" expanded="true" signature="1534:1583" ph="insert into userinfo... " />
-            <marker date="1492159697000" expanded="true" signature="1804:1827" ph="select last_... " />
+            <element signature="e#410#411#0" expanded="true" />
+            <element signature="e#454#455#0" expanded="true" />
+            <marker date="1492161855000" expanded="true" signature="814:849" ph="select * fro... userinfo" />
+            <marker date="1492161855000" expanded="true" signature="2366:2415" ph="insert into userinfo... " />
+            <marker date="1492161855000" expanded="true" signature="2652:2675" ph="select last_... " />
+            <marker date="1492161855000" expanded="true" signature="3883:3914" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>
@@ -1115,10 +1123,12 @@
           <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#411#412#0" expanded="true" />
-            <marker date="1492159697000" expanded="true" signature="727:762" ph="select * fro... userinfo" />
-            <marker date="1492159697000" expanded="true" signature="1534:1583" ph="insert into userinfo... " />
-            <marker date="1492159697000" expanded="true" signature="1804:1827" ph="select last_... " />
+            <element signature="e#410#411#0" expanded="true" />
+            <element signature="e#454#455#0" expanded="true" />
+            <marker date="1492161855000" expanded="true" signature="814:849" ph="select * fro... userinfo" />
+            <marker date="1492161855000" expanded="true" signature="2366:2415" ph="insert into userinfo... " />
+            <marker date="1492161855000" expanded="true" signature="2652:2675" ph="select last_... " />
+            <marker date="1492161855000" expanded="true" signature="3883:3914" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>
@@ -1185,10 +1195,12 @@
           <caret line="50" column="8" lean-forward="false" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#411#412#0" expanded="true" />
-            <marker date="1492159697000" expanded="true" signature="727:762" ph="select * fro... userinfo" />
-            <marker date="1492159697000" expanded="true" signature="1534:1583" ph="insert into userinfo... " />
-            <marker date="1492159697000" expanded="true" signature="1804:1827" ph="select last_... " />
+            <element signature="e#410#411#0" expanded="true" />
+            <element signature="e#454#455#0" expanded="true" />
+            <marker date="1492161855000" expanded="true" signature="814:849" ph="select * fro... userinfo" />
+            <marker date="1492161855000" expanded="true" signature="2366:2415" ph="insert into userinfo... " />
+            <marker date="1492161855000" expanded="true" signature="2652:2675" ph="select last_... " />
+            <marker date="1492161855000" expanded="true" signature="3883:3914" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>
@@ -1233,20 +1245,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/kr.ac.jejunu/UserDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="54" lean-forward="false" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#411#412#0" expanded="true" />
-            <marker date="1492159697000" expanded="true" signature="727:762" ph="select * fro... userinfo" />
-            <marker date="1492159697000" expanded="true" signature="1534:1583" ph="insert into userinfo... " />
-            <marker date="1492159697000" expanded="true" signature="1804:1827" ph="select last_... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/kr.ac.jejunu/HallaConnectionMaker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -1271,10 +1269,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/kr.ac.jejunu/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="130" column="88" lean-forward="false" selection-start-line="130" selection-start-column="88" selection-end-line="130" selection-end-column="88" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#410#411#0" expanded="true" />
+            <element signature="e#454#455#0" expanded="true" />
+            <marker date="1492161855000" expanded="true" signature="814:849" ph="select * fro... userinfo" />
+            <marker date="1492161855000" expanded="true" signature="2366:2415" ph="insert into userinfo... " />
+            <marker date="1492161855000" expanded="true" signature="2652:2675" ph="select last_... " />
+            <marker date="1492161855000" expanded="true" signature="3883:3914" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/kr.ac.jejunu/UserDaoTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="1050">
+          <caret line="79" column="19" lean-forward="true" selection-start-line="79" selection-start-column="19" selection-end-line="79" selection-end-column="19" />
           <folding />
         </state>
       </provider>
