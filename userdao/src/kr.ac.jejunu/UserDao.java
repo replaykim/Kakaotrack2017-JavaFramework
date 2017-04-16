@@ -21,7 +21,7 @@ public class UserDao {
         //Class 를 로딩해야되겠네.
         Connection connection = getConnection();
         //쿼리를만들어야겠네
-        PreparedStatement preparedStatement = connection.prepareStatement("select * from user where id = ?");
+        PreparedStatement preparedStatement = connection.prepareStatement("select * from userdata where id = ?");
         preparedStatement.setLong(1, id);
         //쿼리를실행해야겠네
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -42,29 +42,24 @@ public class UserDao {
         return user;
     }
 
-    public Long add(User user) throws SQLException, ClassNotFoundException {
-        Connection connection = getConnection();
 
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into user(name, password) VALUES (?,?)");
-        preparedStatement.setString(1, user.getName());
-        preparedStatement.setString(2, user.getPassword());
+    public void add(User user) throws ClassNotFoundException, SQLException {
+        //User 어디에있어? Mysql
+        //Class 를 로딩해야되겠네.
+        Connection connection = getConnection();
+        //쿼리를만들어야겠네
+        PreparedStatement preparedStatement = connection.prepareStatement("insert into userdata VALUES (?,?,?)");
+        preparedStatement.setLong(1, user.getId());
+        preparedStatement.setString(2,user.getName());
+        preparedStatement.setString(3,user.getPassword());
+        //쿼리를실행해야겠네
         preparedStatement.executeUpdate();
 
-        preparedStatement = connection.prepareStatement("select last_insert_id()");
-        ResultSet resultSet = preparedStatement.executeQuery();
-        resultSet.next();
-
-        Long id = resultSet.getLong(1);
-
-        resultSet.close();
         preparedStatement.close();
         connection.close();
-
-        return id;
     }
-
     private Connection getConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
-        return DriverManager.getConnection("jdbc:mysql://113.198.162.186:3306/test?characterEncoding=utf-8", "root", "as0109247");
+        return DriverManager.getConnection("jdbc:mysql://117.17.102.106:3306/replayDB?characterEncoding=utf-8", "root", "1234");
     }
 }
