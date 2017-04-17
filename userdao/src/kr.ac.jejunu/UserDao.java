@@ -26,17 +26,36 @@ public class UserDao {
 
     public User get(Long id) throws ClassNotFoundException, SQLException {
 
-        StatementStrategy statementStrategy = new GetUserStatementStrategy(id);
+        StatementStrategy statementStrategy = connection -> {
+            String sql = "select * from userinfo where id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1, id);
+
+            return preparedStatement;
+        };
         return jdbcContext.jdbcContextWithStatementStrategyForGet(statementStrategy);
     }
 
     public Long add(User user) throws SQLException, ClassNotFoundException {
-        StatementStrategy statementStrategy = new AddUserStatementStrategy(user);
+        StatementStrategy statementStrategy = connection -> {
+            String sql = "insert into userinfo(name, password) VALUES (?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getPassword());
+
+            return preparedStatement;
+        };
         return jdbcContext.jdbcContextWithStatementStrategyForAdd(statementStrategy);
     }
 
     public void delete(Long id) {
-        StatementStrategy statementStrategy = new DeleteUserStatementStrategy(id);
+        StatementStrategy statementStrategy = connection -> {
+            String sql = "DELETE FROM userinfo WHERE id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1, id);
+
+            return preparedStatement;
+        };
         jdbcContext.jdbcContextWithStatementStrategyForUpdate(statementStrategy);
     }
 }
