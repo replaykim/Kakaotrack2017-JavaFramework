@@ -17,152 +17,26 @@ import java.sql.*;
 
 public class UserDao {
 
-    DataSource dataSource;
-
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public void setJdbcContext(JdbcContext jdbcContext) {
+        this.jdbcContext = jdbcContext;
     }
+
+    JdbcContext jdbcContext;
 
 
     public User get(Long id) throws ClassNotFoundException, SQLException {
 
-        ResultSet resultSet = null;
-        PreparedStatement preparedStatement = null;
-        Connection connection = null;
-        User user = null;
-        try {
-            connection = dataSource.getConnection();
-//            String sql = "select * from userinfo where id = ?";
-//            preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setLong(1, id);
-            StatementStrategy statementStrategy = new GetUserStatementStrategy();
-            preparedStatement = statementStrategy.makeStatement(id,connection);
-            resultSet = preparedStatement.executeQuery();
-
-            if ( resultSet.next()){
-                user = new User();
-                user.setId(resultSet.getLong("id"));
-                user.setName(resultSet.getString("name"));
-                user.setPassword(resultSet.getString("password"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (preparedStatement != null) {
-                try {
-                    preparedStatement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return user;
+        StatementStrategy statementStrategy = new GetUserStatementStrategy(id);
+        return jdbcContext.jdbcContextWithStatementStrategyForGet(statementStrategy);
     }
 
     public Long add(User user) throws SQLException, ClassNotFoundException {
-        Long id = null;
-        ResultSet resultSet = null;
-        PreparedStatement preparedStatement = null;
-        Connection connection = null;
-
-        try {
-            connection = dataSource.getConnection();
-//        String sql = "insert into userinfo(name, password) VALUES (?,?)";
-//            preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setString(1, user.getName());
-//            preparedStatement.setString(2, user.getPassword());
-            StatementStrategy statementStrategy = new AddUserStatementStrategy();
-            preparedStatement = statementStrategy.makeStatement(user, connection);
-            preparedStatement.executeUpdate();
-
-            preparedStatement = connection.prepareStatement("select last_insert_id()");
-            resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-
-            id = resultSet.getLong(1);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (preparedStatement != null) {
-                try {
-                    preparedStatement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return id;
+        StatementStrategy statementStrategy = new AddUserStatementStrategy(user);
+        return jdbcContext.jdbcContextWithStatementStrategyForAdd(statementStrategy);
     }
 
     public void delete(Long id) {
-        ResultSet resultSet = null;
-        PreparedStatement preparedStatement = null;
-        Connection connection = null;
-
-        try {
-            connection = dataSource.getConnection();
-//            preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setLong(1, id);
-            StatementStrategy statementStrategy = new DeleteUserStatementStrategy();
-            preparedStatement= statementStrategy.makeStatement(id, connection);
-            preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (preparedStatement != null) {
-                try {
-                    preparedStatement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
+        StatementStrategy statementStrategy = new DeleteUserStatementStrategy(id);
+        jdbcContext.jdbcContextWithStatementStrategyForUpdate(statementStrategy);
     }
 }

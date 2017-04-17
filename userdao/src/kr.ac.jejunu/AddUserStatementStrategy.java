@@ -1,5 +1,6 @@
 package kr.ac.jejunu;
 
+import javax.jws.soap.SOAPBinding;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,9 +9,13 @@ import java.sql.SQLException;
  * Created by replay on 2017. 4. 14..
  */
 public class AddUserStatementStrategy implements StatementStrategy {
+    private User user;
+    public AddUserStatementStrategy(User user) {
+        this.user = user;
+    }
+
     @Override
-    public PreparedStatement makeStatement(Object object, Connection connection) throws SQLException {
-        User user = (User) object;
+    public PreparedStatement makeStatement(Connection connection) throws SQLException {
 
         String sql = "insert into userinfo(name, password) VALUES (?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
