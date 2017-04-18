@@ -14,11 +14,10 @@ import java.sql.*;
  * extract method
  */
 
-public class UserDao {
+public abstract class UserDao {
 
     public User get(Long id) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection connection = DriverManager.getConnection("jdbc:mysql://117.17.102.106:3306/replayDB?characterEncoding=utf-8", "root", "1234");
+        Connection connection = getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("select * from userdata where id = ?");
         preparedStatement.setLong(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -36,9 +35,10 @@ public class UserDao {
     }
 
 
+
+
     public void add(User user) throws SQLException, ClassNotFoundException {
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection connection = DriverManager.getConnection("jdbc:mysql://117.17.102.106:3306/replayDB?characterEncoding=utf-8", "root", "1234");
+        Connection connection = getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO userdata VALUES (?,?,?)");
         preparedStatement.setLong(1,user.getId());
         preparedStatement.setString(2,user.getName());
@@ -48,4 +48,5 @@ public class UserDao {
         preparedStatement.close();
         connection.close();
     }
+    abstract Connection getConnection() throws ClassNotFoundException, SQLException;
 }
