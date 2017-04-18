@@ -9,9 +9,13 @@ import java.sql.SQLException;
  */
 public class
 AddUserStatementStrategy implements StatementStrategy {
+    User user;
+    public AddUserStatementStrategy(User user) {
+        this.user = user;
+    }
+
     @Override
-    public PreparedStatement makeStatement(Object object, Connection connection) throws SQLException {
-        User user = (User) object;
+    public PreparedStatement makeStatement(Connection connection) throws SQLException {
         PreparedStatement preparedStatement;
 
         preparedStatement = connection.prepareStatement("INSERT INTO userdata VALUES (?,?,?)");
