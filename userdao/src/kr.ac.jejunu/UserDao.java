@@ -15,7 +15,8 @@ import java.sql.*;
  */
 
 public class UserDao {
-    public UserDao(ConnetionMaker connetionMaker) {
+
+    public void setConnetionMaker(ConnetionMaker connetionMaker) {
         this.connetionMaker = connetionMaker;
     }
 
