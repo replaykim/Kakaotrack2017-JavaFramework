@@ -1,5 +1,8 @@
 package kr.ac.jejunu;
 
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import java.sql.*;
 
 /**
@@ -16,43 +19,48 @@ import java.sql.*;
 
 public class UserDao {
 
-    private JdbcContext jdbcContext;
+    private JdbcTemplate jdbcTemplate;
 
-    public void setJdbcContext(JdbcContext jdbcContext) {
-        this.jdbcContext = jdbcContext;
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     public User get(Long id) throws ClassNotFoundException, SQLException {
-        StatementStrategy statementStrategy = connection -> {
-            PreparedStatement preparedStatement;
-            preparedStatement = connection.prepareStatement("select * from userdata where id = ?");
-            preparedStatement.setLong(1, id);
-            return preparedStatement;
-        };
-        return jdbcContext.JdbcContextWithStatementStrategtForquery(statementStrategy);
+        String sql = "select * from userdata where id = ?";
+        Object[] params = new Object[]{id};
+        User resultUser = null;
+
+        try {
+            resultUser = jdbcTemplate.queryForObject(sql, params,(resultSet, i) -> {
+                User user = new User();
+                user.setId(resultSet.getLong("id"));
+                user.setName(resultSet.getString("name"));
+                user.setPassword(resultSet.getString("password"));
+
+                return user;
+            });
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+
+        return resultUser;
     }
 
     public void add(User user) throws SQLException, ClassNotFoundException {
-        StatementStrategy statementStrategy = connection -> {
-            PreparedStatement preparedStatement;
-            preparedStatement = connection.prepareStatement("INSERT INTO userdata VALUES (?,?,?)");
-            preparedStatement.setLong(1, user.getId());
-            preparedStatement.setString(2, user.getName());
-            preparedStatement.setString(3, user.getPassword());
-            return preparedStatement;
-        };
-        jdbcContext.JdbcContextWithStatementStrategyForUpdate(statementStrategy);
+        String sql = "INSERT INTO userdata VALUES (?,?,?)";
+        Object[] params = new Object[]{user.getId(), user.getName(), user.getPassword()};
+
+        jdbcTemplate.update(sql, params);
     }
 
     public void delete(Long id) throws SQLException {
-        StatementStrategy statementStrategy = connection -> {
-            PreparedStatement preparedStatement;
-            preparedStatement = connection.prepareStatement("DELETE FROM userdata where id = ?");
-            preparedStatement.setLong(1, id);
-            return preparedStatement;
-        };
-        jdbcContext.JdbcContextWithStatementStrategyForUpdate(statementStrategy);
+        String sql = "DELETE FROM userdata where id = ?";
+        Object[] params = new Object[]{id};
+
+        jdbcTemplate.update(sql, params);
     }
+
+
 
 
 }
