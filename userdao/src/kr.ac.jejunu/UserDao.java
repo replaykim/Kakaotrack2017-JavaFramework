@@ -17,49 +17,21 @@ import java.sql.*;
 public class UserDao {
 
     public User get(Long id) throws ClassNotFoundException, SQLException {
-        //User 어디에있어? Mysql
-        //Class 를 로딩해야되겠네.
-        Connection connection = getConnection();
-        //쿼리를만들어야겠네
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://117.17.102.106:3306/replayDB?characterEncoding=utf-8", "root", "1234");
         PreparedStatement preparedStatement = connection.prepareStatement("select * from userdata where id = ?");
         preparedStatement.setLong(1, id);
-        //쿼리를실행해야겠네
         ResultSet resultSet = preparedStatement.executeQuery();
-        //실행된결과를 객체에매핑
-        resultSet.next();                               //커서를 욺긴다
+        resultSet.next();
         User user = new User();
         user.setId(resultSet.getLong("id"));
         user.setName(resultSet.getString("name"));
         user.setPassword(resultSet.getString("password"));
-        //자원해지
+
         resultSet.close();
         preparedStatement.close();
         connection.close();
-        //결과를 리턴
-
-
 
         return user;
-    }
-
-
-    public void add(User user) throws ClassNotFoundException, SQLException {
-        //User 어디에있어? Mysql
-        //Class 를 로딩해야되겠네.
-        Connection connection = getConnection();
-        //쿼리를만들어야겠네
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into userdata VALUES (?,?,?)");
-        preparedStatement.setLong(1, user.getId());
-        preparedStatement.setString(2,user.getName());
-        preparedStatement.setString(3,user.getPassword());
-        //쿼리를실행해야겠네
-        preparedStatement.executeUpdate();
-
-        preparedStatement.close();
-        connection.close();
-    }
-    private Connection getConnection() throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
-        return DriverManager.getConnection("jdbc:mysql://117.17.102.106:3306/replayDB?characterEncoding=utf-8", "root", "1234");
     }
 }
