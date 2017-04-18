@@ -24,19 +24,47 @@ public class UserDao {
     DataSource datasource;
 
     public User get(Long id) throws ClassNotFoundException, SQLException {
-        Connection connection = datasource.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("select * from userdata where id = ?");
-        preparedStatement.setLong(1, id);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        resultSet.next();
-        User user = new User();
-        user.setId(resultSet.getLong("id"));
-        user.setName(resultSet.getString("name"));
-        user.setPassword(resultSet.getString("password"));
-
-        resultSet.close();
-        preparedStatement.close();
-        connection.close();
+        User user = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Connection connection = null;
+        try {
+            connection = datasource.getConnection();
+            preparedStatement = connection.prepareStatement("select * from userdata where id = ?");
+            preparedStatement.setLong(1, id);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                user = new User();
+                user.setId(resultSet.getLong("id"));
+                user.setName(resultSet.getString("name"));
+                user.setPassword(resultSet.getString("password"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
         return user;
     }
@@ -45,14 +73,34 @@ public class UserDao {
 
 
     public void add(User user) throws SQLException, ClassNotFoundException {
-        Connection connection = datasource.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO userdata VALUES (?,?,?)");
-        preparedStatement.setLong(1,user.getId());
-        preparedStatement.setString(2,user.getName());
-        preparedStatement.setString(3,user.getPassword());
-        preparedStatement.executeUpdate();
+        PreparedStatement preparedStatement = null;
+        Connection connection = null;
+        try {
+            connection = datasource.getConnection();
+            preparedStatement = connection.prepareStatement("INSERT INTO userdata VALUES (?,?,?)");
+            preparedStatement.setLong(1, user.getId());
+            preparedStatement.setString(2, user.getName());
+            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.executeUpdate();
 
-        preparedStatement.close();
-        connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }
