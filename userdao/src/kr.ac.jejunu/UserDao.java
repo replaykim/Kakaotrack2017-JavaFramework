@@ -34,4 +34,18 @@ public class UserDao {
 
         return user;
     }
+
+
+    public void add(User user) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://117.17.102.106:3306/replayDB?characterEncoding=utf-8", "root", "1234");
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO userdata VALUES (?,?,?)");
+        preparedStatement.setLong(1,user.getId());
+        preparedStatement.setString(2,user.getName());
+        preparedStatement.setString(3,user.getPassword());
+        preparedStatement.executeUpdate();
+
+        preparedStatement.close();
+        connection.close();
+    }
 }
