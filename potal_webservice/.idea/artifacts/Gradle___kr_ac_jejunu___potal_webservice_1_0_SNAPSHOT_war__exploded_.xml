@@ -1,0 +1,52 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Gradle : kr.ac.jejunu : potal_webservice-1.0-SNAPSHOT.war (exploded)">
+    <output-path>$PROJECT_DIR$/build/libs/exploded/potal_webservice-1.0-SNAPSHOT.war</output-path>
+    <properties id="gradle-properties">
+      <options external-project-path="$PROJECT_DIR$">
+        <manifest>TWFuaWZlc3QtVmVyc2lvbjogMS4wDQoNCg==</manifest>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/build/libs/exploded/potal_webservice-1.0-SNAPSHOT.war/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="potal_webservice_main/web/Web Gradle : potal_webservice-1.0-SNAPSHOT.war" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="potal_webservice_main" />
+          <element id="dir-copy" path="$PROJECT_DIR$/build/resources/main" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.37/2c378637f6faff77541244e8257b446f04324bd8/mysql-connector-java-5.1.37.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/org.springframework/spring-context/4.3.8.RELEASE/944073ac58ab78b78a7694d2c53d4ae9f634c815/spring-context-4.3.8.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/org.springframework/spring-aop/4.3.8.RELEASE/2ee7e60f8838bff13c5def48fab571ab10553e5d/spring-aop-4.3.8.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/org.springframework/spring-beans/4.3.8.RELEASE/9d39133bb80e13d643bfefd731fe86cab3aa2bd7/spring-beans-4.3.8.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/org.springframework/spring-core/4.3.8.RELEASE/cce6c251249e48f0a86aa578c2a0e262efa5a1e0/spring-core-4.3.8.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/org.springframework/spring-expression/4.3.8.RELEASE/204f7e241f42f46b16baa3d190752703efd7797/spring-expression-4.3.8.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/org.springframework/spring-jdbc/4.3.8.RELEASE/55b84eaa488b3659dae971573aad35fe6f549011/spring-jdbc-4.3.8.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/org.springframework/spring-tx/4.3.8.RELEASE/7d84a40ac7eb8548aa67b8a3ae89baa8a5eb39a0/spring-tx-4.3.8.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.3.8.RELEASE/7a00452c350de0fb80ecbcecfb8ce0145c46141e/spring-webmvc-4.3.8.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/org.springframework/spring-oxm/4.3.8.RELEASE/65ba0d05277ea25e166a493508ed13b3fd7c7e10/spring-oxm-4.3.8.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/javax.servlet/javax.servlet-api/3.1.0/3cd63d075497751784b2fa84be59432f4905bf7c/javax.servlet-api-3.1.0.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.21/139535a69a4239db087de9bab0bee568bf8e0b70/slf4j-api-1.7.21.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.8/bf88c7b27e95cbadce4e7c316a56c3efffda8026/jackson-databind-2.8.8.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/com.fasterxml.jackson.dataformat/jackson-dataformat-xml/2.8.8/3f5e135fd48af6c7fb432166c5b658e9133114ea/jackson-dataformat-xml-2.8.8.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/org.codehaus.castor/castor-core/1.4.1/b973333a7ce1b8017dccba68068023c9d17f9872/castor-core-1.4.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/org.codehaus.castor/castor-xml/1.4.1/2cee800a008291305ac4f3a67b674f9c6cb1d07a/castor-xml-1.4.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.1.7/9865cf6994f9ff13fce0bf93f2054ef6c65bb462/logback-classic-1.1.7.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/4bfc12adfe4842bf07b657f0369c4cb522955686/commons-logging-1.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.8.RELEASE/ec1b675c2e234b0c776d36ed56c691520030026f/spring-web-4.3.8.RELEASE.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.8.0/45b426f7796b741035581a176744d91090e2e6fb/jackson-annotations-2.8.0.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.8.8/d478fb6de45a7c3d2cad07c8ad70c7f0a797a020/jackson-core-2.8.8.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/com.fasterxml.jackson.module/jackson-module-jaxb-annotations/2.8.8/e2e95efc46d45be4b429b704efbb1d4b89721d3a/jackson-module-jaxb-annotations-2.8.8.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/org.codehaus.woodstox/stax2-api/3.1.4/ac19014b1e6a7c08aad07fe114af792676b685b7/stax2-api-3.1.4.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/com.fasterxml.woodstox/woodstox-core/5.0.3/10aa199207fda142eff01cd61c69244877d71770/woodstox-core-5.0.3.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.4/5fe28b9518e58819180a43a850fbc0dd24b7c050/commons-lang3-3.4.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/org.apache.commons/commons-collections4/4.1/a4cf4688fe1c7e3a63aa636cc96d013af537768e/commons-collections4-4.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../somethinglikethat/prototype/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.1.7/7873092d39ef741575ca91378a6a21c388363ac8/logback-core-1.1.7.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
